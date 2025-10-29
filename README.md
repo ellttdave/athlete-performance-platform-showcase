@@ -1,3 +1,11 @@
+[![Release](https://img.shields.io/github/v/release/ellttdave/athlete-performance-platform-showcase?display_name=tag)](https://github.com/ellttdave/athlete-performance-platform-showcase/releases)
+[![License](https://img.shields.io/github/license/ellttdave/athlete-performance-platform-showcase)](./LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/ellttdave/athlete-performance-platform-showcase)](https://github.com/ellttdave/athlete-performance-platform-showcase/commits)
+[![Stars](https://img.shields.io/github/stars/ellttdave/athlete-performance-platform-showcase)](https://github.com/ellttdave/athlete-performance-platform-showcase/stargazers)
+
+![Top language](https://img.shields.io/github/languages/top/ellttdave/athlete-performance-platform-showcase)
+![Repo size](https://img.shields.io/github/repo-size/ellttdave/athlete-performance-platform-showcase)
+
 # Athlete Performance Analytics Platform - Technical Showcase
 
 > A production application demonstrating advanced LLM integration, RAG systems, and modern full-stack architecture patterns.
