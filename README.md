@@ -151,6 +151,5 @@ Technical showcase - Code examples are for demonstration and educational purpose
 
 ## Connect
 
-- Portfolio: [Your Portfolio]
-- LinkedIn: [Your LinkedIn]
-- Email: [Your Email]
+- LinkedIn: http://linkedin.com/in/david-elliott-6304555a
+- Email: ellttdave218@gmail.com
