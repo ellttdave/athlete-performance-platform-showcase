@@ -83,7 +83,7 @@ This document provides a comprehensive overview of the system architecture, desi
 
 **Important Architecture Note**:
 - **RAG System**: Used for general knowledge, research articles, best practices
-- **PostgreSQL NormativeData Table**: Used for structured percentile data (deterministic queries)
+- **PostgreSQL StructuredData Table**: Used for precise numeric/reference data (deterministic queries)
 - This dual approach ensures both contextual understanding (RAG) and precise data retrieval (database)
 
 ### 3. Layered Architecture
@@ -125,7 +125,7 @@ This document provides a comprehensive overview of the system architecture, desi
 - **PostgreSQL**: Primary database (Neon)
 - **pgvector**: Vector similarity search
 - **Prisma ORM**: Type-safe database access
-- **NormativeData Table**: Structured percentile data (separate from RAG)
+- **StructuredData Table**: Precise numeric/reference data (separate from RAG)
 
 ### AI/ML
 - **Anthropic Claude**: LLM for analysis

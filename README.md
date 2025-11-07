@@ -50,7 +50,7 @@ A production-ready RAG system using vector embeddings and semantic search.
 
 **Architecture Note:**
 - RAG is used for general knowledge, research articles, and contextual explanations
-- Structured normative percentile data is stored in PostgreSQL (not RAG) for deterministic queries
+- Precise numeric/reference data is stored in PostgreSQL (not RAG) for deterministic queries
 
 [View RAG Implementation →](./docs/RAG_IMPLEMENTATION.md)
 

@@ -159,11 +159,11 @@ Document content here...
 
 **Important Distinction:**
 - **RAG System**: Used for general knowledge, research articles, best practices, and contextual explanations
-- **PostgreSQL NormativeData Table**: Used for structured percentile data (deterministic queries)
+- **PostgreSQL StructuredData Table**: Used for precise numeric/reference data (deterministic queries)
 
 **Why This Architecture:**
-- RAG is probabilistic and may not reliably retrieve exact percentile values
-- Structured database provides deterministic, fast queries for percentile calculations
+- RAG is probabilistic and may not reliably retrieve exact numeric values
+- Structured database provides deterministic, fast queries for precise data calculations
 - Best of both worlds: RAG for context, database for precision
 
 ### Document Updates
