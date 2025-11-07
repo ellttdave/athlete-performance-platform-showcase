@@ -57,17 +57,34 @@ This document provides a comprehensive overview of the system architecture, desi
 **Purpose**: Provide LLM with access to knowledge base through semantic search
 
 **Components**:
+- Document upload and storage (Vercel Blob Storage)
+- Text extraction (Google Document AI with fallback)
+- PDF splitting for large files (pdf-lib)
 - Vector embedding generation (OpenAI)
 - Semantic search (pgvector)
 - Knowledge base retrieval
 - Context formatting for LLM
 
-**Flow**:
+**Document Processing Flow**:
+1. Upload document → Store in Vercel Blob Storage
+2. Check file size/pages → Split if needed
+3. Extract text (Document AI Form Parser or Layout Parser)
+4. Fallback to unpdf if Document AI unavailable
+5. Chunk text into 500-word segments
+6. Generate embeddings for each chunk
+7. Store in PostgreSQL with source attribution
+
+**RAG Query Flow**:
 1. User query → Generate embedding
 2. Vector similarity search in PostgreSQL
 3. Retrieve top-K relevant documents
 4. Format context for LLM
 5. LLM uses context in analysis
+
+**Important Architecture Note**:
+- **RAG System**: Used for general knowledge, research articles, best practices
+- **PostgreSQL NormativeData Table**: Used for structured percentile data (deterministic queries)
+- This dual approach ensures both contextual understanding (RAG) and precise data retrieval (database)
 
 ### 3. Layered Architecture
 
@@ -108,6 +125,7 @@ This document provides a comprehensive overview of the system architecture, desi
 - **PostgreSQL**: Primary database (Neon)
 - **pgvector**: Vector similarity search
 - **Prisma ORM**: Type-safe database access
+- **NormativeData Table**: Structured percentile data (separate from RAG)
 
 ### AI/ML
 - **Anthropic Claude**: LLM for analysis
@@ -115,8 +133,10 @@ This document provides a comprehensive overview of the system architecture, desi
 - **Tool Calling**: Structured LLM interactions
 
 ### Infrastructure
-- **Vercel**: Deployment platform
+- **Vercel**: Deployment platform (Hobby: 10s timeout, Pro: up to 300s)
+- **Vercel Blob Storage**: Document persistence
 - **Neon**: Managed PostgreSQL
+- **Google Cloud**: Document AI service (with fallback to unpdf)
 
 ## Data Flow
 

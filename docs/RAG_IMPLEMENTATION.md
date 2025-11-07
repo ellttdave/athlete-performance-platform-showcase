@@ -123,25 +123,70 @@ Document content here...
 ### Document Ingestion
 
 **Process**:
-1. Load documents (PDF, DOCX, TXT)
-2. Chunk into 500-word segments
-3. Generate embeddings for each chunk
-4. Store in database
+1. Upload documents (PDF, DOCX, TXT, Excel, PowerPoint, HTML, Images)
+2. Store in Vercel Blob Storage for persistence
+3. Extract text using Google Document AI:
+   - **Form Parser**: For structured tables (15 page limit in non-imageless mode)
+   - **Layout Parser**: For general text extraction (30 page limit)
+   - **Fallback**: unpdf for PDFs when Document AI unavailable
+4. Split large PDFs automatically (>15 pages or >4MB)
+5. Chunk into 500-word segments
+6. Generate embeddings for each chunk
+7. Store in database with source attribution
+
+**Supported File Types**:
+- PDF (with automatic splitting)
+- DOCX (Word documents)
+- TXT (Text files)
+- Excel (XLSX/XLS)
+- PowerPoint (PPTX)
+- HTML
+- Images (JPEG/PNG) with OCR
+
+**PDF Splitting**:
+- Automatic splitting for files >15 pages (Form Parser limit)
+- Automatic splitting for files >4MB (Vercel serverless limit)
+- Uses `pdf-lib` for serverless-compatible splitting
+- Each part processed independently
 
 **Chunking Strategy**:
 - 500 words per chunk
 - Overlap between chunks (optional)
 - Preserve context
+- Source attribution in each chunk
+
+### Document Processing Architecture
+
+**Important Distinction:**
+- **RAG System**: Used for general knowledge, research articles, best practices, and contextual explanations
+- **PostgreSQL NormativeData Table**: Used for structured percentile data (deterministic queries)
+
+**Why This Architecture:**
+- RAG is probabilistic and may not reliably retrieve exact percentile values
+- Structured database provides deterministic, fast queries for percentile calculations
+- Best of both worlds: RAG for context, database for precision
 
 ### Document Updates
+
+**Individual Re-processing**:
+- Each document can be re-processed individually via admin interface
+- Avoids timeout issues on Vercel Hobby plan (10s limit)
+- PDF splitting happens automatically if needed
+
+**Bulk Re-ingestion**:
+- Process all documents at once
+- Limited by Vercel timeout (10s Hobby, 300s Pro with maxDuration)
+- Includes timeout buffer checks to save progress
 
 **When to Re-ingest**:
 - New documents added
 - Documents modified
 - Knowledge base updates
+- Document AI extraction improved
 
 **Process**:
-- Remove old embeddings
+- Remove old embeddings for document
+- Re-extract text (with Document AI or fallback)
 - Generate new embeddings
 - Update database
 

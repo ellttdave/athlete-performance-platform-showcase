@@ -38,10 +38,19 @@ A custom architecture pattern that mimics Model Context Protocol (MCP) to provid
 A production-ready RAG system using vector embeddings and semantic search.
 
 **Key Features:**
+- Google Document AI for advanced text extraction (Form Parser, Layout Parser)
+- Automatic PDF splitting for large files (>15 pages or >4MB)
 - OpenAI embeddings (text-embedding-3-small)
 - pgvector for PostgreSQL vector similarity search
+- Vercel Blob Storage for document persistence
+- Individual document re-processing to avoid timeout issues
+- Fallback mechanisms (unpdf) for reliability
 - Automatic knowledge base integration
 - Top-K retrieval with similarity scoring
+
+**Architecture Note:**
+- RAG is used for general knowledge, research articles, and contextual explanations
+- Structured normative percentile data is stored in PostgreSQL (not RAG) for deterministic queries
 
 [View RAG Implementation →](./docs/RAG_IMPLEMENTATION.md)
 
@@ -51,8 +60,10 @@ Modern web application architecture with:
 - **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes, Server Actions
 - **Database**: PostgreSQL (Neon) with Prisma ORM, pgvector extension
-- **AI/ML**: Anthropic Claude API, OpenAI Embeddings
-- **Deployment**: Vercel
+- **AI/ML**: Anthropic Claude API (Sonnet 4 for analysis, Haiku for semantic mapping), OpenAI Embeddings
+- **Document Processing**: Google Document AI (Form Parser, Layout Parser), pdf-lib for PDF splitting
+- **Storage**: Vercel Blob Storage for document persistence
+- **Deployment**: Vercel (Hobby: 10s timeout, Pro: up to 300s with maxDuration)
 
 [View Tech Stack Details →](./docs/TECH_STACK.md)
 

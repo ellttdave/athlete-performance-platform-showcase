@@ -139,6 +139,27 @@ This document details the technology stack choices, rationale, and alternatives 
 - Sentence Transformers: Self-hosted, more setup
 - Hugging Face: More options, more complexity
 
+### Google Document AI
+
+**Why Document AI?**
+- Advanced PDF parsing and OCR
+- Table extraction capabilities
+- Structured document understanding
+- Production-grade reliability
+
+**Processors Used:**
+- **Form Parser**: Extracts structured tables (15 page limit in non-imageless mode, 30 in imageless)
+- **Layout Parser**: General text extraction and document structure (30 page limit)
+
+**Fallback Strategy:**
+- unpdf for PDFs when Document AI credentials unavailable
+- Ensures system continues working even without Google Cloud setup
+
+**Alternatives Considered:**
+- Tesseract OCR: Self-hosted, more setup
+- AWS Textract: Similar capabilities, different provider
+- Direct PDF parsing: Less accurate for complex documents
+
 ## Infrastructure
 
 ### Vercel
@@ -154,11 +175,31 @@ This document details the technology stack choices, rationale, and alternatives 
 - Preview deployments
 - Environment variables
 - Analytics
+- Blob Storage for document persistence
+- Serverless functions with configurable timeouts
+
+**Timeout Limitations:**
+- Hobby plan: 10 seconds (limits bulk operations)
+- Pro plan: Up to 300 seconds with `maxDuration` export
+- Individual document processing avoids timeout issues
 
 **Alternatives Considered:**
 - AWS: More control, more complexity
 - Railway: Simpler, smaller ecosystem
 - Netlify: Similar, less Next.js focus
+
+### Vercel Blob Storage
+
+**Why Vercel Blob?**
+- Integrated with Vercel deployment
+- Persistent document storage
+- Easy file upload/download
+- No additional service needed
+
+**Use Cases:**
+- Store uploaded RAG documents
+- Persistent file storage across deployments
+- Direct URL access for document processing
 
 ### Neon PostgreSQL
 
@@ -167,6 +208,18 @@ This document details the technology stack choices, rationale, and alternatives 
 - Automatic scaling
 - Branching support
 - Easy integration
+
+## Document Processing Tools
+
+### PDF Processing
+- **pdf-lib**: Pure JavaScript PDF manipulation for serverless environments
+- **Automatic Splitting**: Handles large PDFs (>15 pages or >4MB)
+- **Serverless Compatible**: No native dependencies
+
+### Text Extraction
+- **Google Document AI**: Primary extraction method
+- **unpdf**: Fallback for PDFs when Document AI unavailable
+- **Multi-format Support**: PDF, DOCX, TXT, Excel, PowerPoint, HTML, Images
 
 ## Development Tools
 
