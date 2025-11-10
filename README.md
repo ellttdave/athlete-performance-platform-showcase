@@ -120,32 +120,6 @@ Type-safe JSON generation with validation:
 - Type safety with TypeScript
 - Scalable architecture
 
-## 📸 Screenshots
-
-Screenshots demonstrating key features and UI:
-
-<div align="center">
-
-### Main Dashboard
-![Dashboard](./screenshots/dashboard.png)
-*Overview of the main application interface*
-
-### AI Chat Interface
-![Chat Interface](./screenshots/chat-interface.png)
-*Interactive LLM chat with RAG-powered knowledge base integration*
-
-### Knowledge Base Management
-![Knowledge Base](./screenshots/knowledge-base.png)
-*Document upload and management interface*
-
-### Architecture Overview
-![Architecture](./screenshots/architecture.png)
-*High-level system architecture diagram*
-
-</div>
-
-> **Note**: Add your screenshots to the `screenshots/` directory and update the paths above. Ensure all screenshots are sanitized (no real data or sensitive information).
-
 ## 💡 Technical Insights
 
 ### Why MCP-Like Architecture?
