@@ -60,10 +60,10 @@ Modern web application architecture with:
 - **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes, Server Actions
 - **Database**: PostgreSQL (Neon) with Prisma ORM, pgvector extension
-- **AI/ML**: Anthropic Claude API (Sonnet 4 for analysis, Haiku for semantic mapping), OpenAI Embeddings
-- **Document Processing**: Google Document AI (Form Parser, Layout Parser), pdf-lib for PDF splitting
+- **AI/ML**: Anthropic Claude API, OpenAI Embeddings
+- **Document Processing**: Google Document AI, pdf-lib for PDF splitting
 - **Storage**: Vercel Blob Storage for document persistence
-- **Deployment**: Vercel (Hobby: 10s timeout, Pro: up to 300s with maxDuration)
+- **Deployment**: Vercel
 
 [View Tech Stack Details →](./docs/TECH_STACK.md)
 
