@@ -19,7 +19,7 @@ This repository showcases the technical architecture and implementation patterns
 - **MCP-like Architecture** for clean separation of concerns
 - **Modern Full-Stack** development with Next.js, TypeScript, and PostgreSQL
 
-**Note**: This repository contains sanitized code examples and architecture documentation for educational purposes. The full production application remains private to protect intellectual property.
+**Note**: This repository contains sanitized code examples and architecture documentation for showcaase purposes. The full production application remains private to protect intellectual property.
 
 ## 🏗️ Architecture Highlights
 
